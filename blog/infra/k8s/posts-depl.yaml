@@ -1,0 +1,17 @@
+apiVersion: apps/v1 #bucket of different objects called app/v1
+kind: Deployment #kind of object we try to create
+metadata:
+    name: posts-depl
+spec: #specify exactly how this deployment should behave
+    replicas: 1 #numbers of pods we want to create for a image
+    selector: # take a look at all the differernt pods has been created, find all the pods with a label of app: post
+        matchLabels:
+            app: posts
+    template: # template is where we specify the exact configuration of a pod that we this deployment to create
+        metadata:
+            labels:
+                app: posts
+        spec: # spec for the pod
+            containers:
+                - name: posts
+                  image: rickyyyhuang/posts
